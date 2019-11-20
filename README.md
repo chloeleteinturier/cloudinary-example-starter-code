@@ -1,9 +1,10 @@
 # cloudinary-example-starter-code
 
-// npm install cloudinary multer-storage-cloudinary multer
+### npm install cloudinary multer-storage-cloudinary multer
 
-// In config folder new file cloudinary.js
+### In config folder new file cloudinary.js
 
+```
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
@@ -23,23 +24,27 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage: storage });
 
 module.exports = parser
+```
 
 
+### In the hbs view
 
-// In the hbs view
+```
 <form action="/gif" method="POST" enctype="multipart/form-data">
   <input type="file" name="photo" />
   <button type="submit">New GIF</button>
 </form>
+```
 
 
+### In the router where we want to upload the image
 
-// In the router where we want to upload the image
+```
 const parser = require('../config/cloudinary');
 
 router.post('/', parser.single('photo'), (req, res, next) =>{
  
  const image_url = req.file.secure_url
- ...
+ 
 }
-
+```
